@@ -1,71 +1,84 @@
-# Name: Manav Mangesh Uttekar
-# Roll no.: 71
-# Problem statement: Beginning with an empty binary search tree, construct a binary search tree by inserting the values in the order given. After constructing the binary tree:
-# i. Insert a new node
-# ii. Find the number of nodes in the longest path from root
-# iii. Find the minimum data value in the tree
-# iv. Change the tree so that the roles of the left and right pointers are swapped at every node
-# v. Search for a value in the tree
-
+# Define a Node class for the binary search tree (BST)
 class Node:
     def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+        self.data = data  # Data for the node (value of the node)
+        self.left = None   # Left child of the node
+        self.right = None  # Right child of the node
 
-# 1. Insert into BST
+# 1. Insert function: Inserts a new node in the BST following the BST property
 def insert(root, key):
     if not root:
+        # If the root is None, create a new node with the given key
         return Node(key)
+    
+    # If key is smaller, it should go to the left subtree
     if key < root.data:
         root.left = insert(root.left, key)
     else:
+        # If key is larger, it should go to the right subtree
         root.right = insert(root.right, key)
-    return root
+    
+    return root  # Return the root (after insertion)
 
-# 2. Height of tree (longest path)
+# 2. Function to calculate the height of the tree (Longest path from root)
 def longest_path(root):
     if not root:
+        # If the root is None, the height is 0
         return 0
+    
+    # Calculate the height of both subtrees and add 1 for the current node
     return 1 + max(longest_path(root.left), longest_path(root.right))
 
-# 3. Minimum value in BST
+# 3. Function to find the minimum value in the BST
 def find_min(root):
     current = root
+    # Loop down to find the leftmost leaf (minimum value)
     while current.left:
         current = current.left
-    return current.data
+    return current.data  # Return the minimum value
 
-# 4. Mirror the tree
+# 4. Function to mirror the tree: Swap left and right pointers at every node
 def mirror(root):
     if root:
+        # Swap left and right children of the node
         root.left, root.right = mirror(root.right), mirror(root.left)
-    return root
+    return root  # Return the root of the mirrored tree
 
-# 5. Search in BST
+# 5. Function to search for a value in the BST
 def search(root, key):
     if not root:
+        # If root is None, the key is not found
         return False
+    
     if root.data == key:
+        # If key matches the root's data, return True
         return True
-    return search(root.left, key) if key < root.data else search(root.right, key)
+    
+    # If key is smaller, search in the left subtree
+    if key < root.data:
+        return search(root.left, key)
+    # If key is larger, search in the right subtree
+    else:
+        return search(root.right, key)
 
-# Inorder Traversal for display
+# Function for Inorder Traversal (for displaying the tree in sorted order)
 def inorder(root):
     if root:
-        inorder(root.left)
-        print(root.data, end=' ')
-        inorder(root.right)
+        inorder(root.left)   # Traverse left subtree
+        print(root.data, end=' ')  # Print current node's data
+        inorder(root.right)  # Traverse right subtree
 
-# --- MAIN ---
-# Taking input from the user
+# --- MAIN --- 
+# Taking input from the user for BST construction
 n = int(input("Enter the number of elements to insert in the BST: "))
 values = [int(input(f"Enter value {i+1}: ")) for i in range(n)]
 
 root = None
+# Insert each value into the BST
 for val in values:
     root = insert(root, val)
 
+# Print the Inorder traversal of the BST (This gives the nodes in sorted order)
 print("\nInorder traversal of BST:")
 inorder(root)
 
@@ -73,19 +86,20 @@ inorder(root)
 new_value = int(input("\nEnter a value to insert into the BST: "))
 root = insert(root, new_value)
 print("\nAfter inserting the new value:")
-inorder(root)
+inorder(root)  # Display the BST after insertion
 
-# Longest path from root
+# Find the longest path (height of the tree)
 print("\n\nLongest path (height):", longest_path(root))
 
-# Minimum data value
+# Find the minimum data value in the BST
 print("Minimum value in BST:", find_min(root))
 
-# Mirror the tree
+# Mirror the tree (swap left and right pointers)
 root = mirror(root)
 print("\nInorder after mirroring:")
-inorder(root)
+inorder(root)  # Display the tree after mirroring
 
-# Search for a value (Taking input from the user)
+# Search for a value in the BST (Taking input from the user)
 search_key = int(input("\nEnter a value to search in the BST: "))
+# Search the tree and print whether the value is found
 print(f"\nSearch for {search_key}: {'Found' if search(root, search_key) else 'Not found'}")
