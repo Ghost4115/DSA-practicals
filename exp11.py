@@ -1,3 +1,13 @@
+# Name: Manav Uttekar
+# Roll no: 71
+# Problem Statement: Department maintains student information. The file
+# contains roll number, name, division, and address. Allow user to add, delete 
+# information of a student. Display information of a particular student.
+# If the record of the student does not exist, an appropriate message is displayed.
+# If it does exist, then the system displays the student details. Use sequential file 
+# to maintain the data.
+
+
 import os
 
 FILENAME = "students.txt"  # The file where student records are stored
