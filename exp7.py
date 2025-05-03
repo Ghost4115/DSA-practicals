@@ -24,7 +24,8 @@ class FlightGraph:
         print("Adjacency List Representation of Flight Graph:")
         for city in self.adj:
             # Format the connections for each city
-            connections = ', '.join([f"({dest}, time={time})" for dest, time in self.adj[city]])
+            connections = ', '.join([f"({dest}, time={time})" for dest, time in self.adj[city]]) #', '.join(...) – joins those strings with commas to get:"(Delhi, time=120), (Chennai, time=150)"
+
             print(f"{city} -> {connections}")
     
     # Check if the graph is connected using BFS or DFS
