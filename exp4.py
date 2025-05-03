@@ -1,3 +1,11 @@
+#Name:Manav Mangesh Uttekar
+#Roll no.: 71
+#Problem statement: Construct an expression tree from the given prefix
+#expression eg. +-a*bc/def and traverse it using post order traversal (non
+#recursive) and then delete the entire tree.
+
+
+
 class Node:
     def __init__(self, data):
         self.data = data  # Stores the node data (operator/operand)
