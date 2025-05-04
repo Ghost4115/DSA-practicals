@@ -4,8 +4,13 @@
 # Data: Set of (key, value) pairs, Keys are mapped to values, Keys must be comparable, Keys must be unique.
 # Standard Operations: Insert(key, value), Find(key), Delete(key)
 
+
+#ADT specifies what operations are allowed on the data, but not how they are implemented. 
+#The internal details of the data structure (like arrays, linked lists, or hash tables) are hidden, and 
+#the user interacts with the ADT through a set of defined operations.
+
 # A simple hash function to compute an index from the key. It sums up the ASCII values of each character 
-# in the key and returns the remainder when divided by the table size (hashing).
+# in the key and returns the remainder when divided by the table size (hashing)
 def simple_hash(key, size):
     return sum(ord(c) for c in key) % size
 
